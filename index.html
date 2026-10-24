@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>모바일 청첩장</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="결혼식에 초대합니다">
+  <meta property="og:description" content="소중한 분들을 초대합니다">
+  <meta property="og:image" content="images/og/1.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Pretendard CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ====== Curtain / Intro Overlay (toggled by CONFIG.useCurtain) ====== -->
+<div class="curtain-overlay" id="curtain-overlay" style="display:none;">
+  <div class="curtain-content">
+    <div class="curtain-names"></div>
+    <div class="curtain-date"></div>
+    <button class="curtain-btn" id="curtain-open-btn" type="button">초대장 열기</button>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- ====== Hero ====== -->
+  <section class="hero">
+    <img class="hero-image" src="" alt="Wedding photo" loading="eager">
+    <div class="hero-overlay">
+      <div class="hero-names"></div>
+      <div class="hero-date"></div>
+      <div class="hero-venue"></div>
+    </div>
+    <div class="hero-scroll"></div>
+  </section>
+
+  <!-- ====== Invitation ====== -->
+  <section class="section invitation fade-in">
+    <div class="section-label">Invitation</div>
+    <div class="section-title">소중한 분들을 초대합니다</div>
+    <p class="invitation-message"></p>
+    <div class="section-divider"></div>
+    <div class="invitation-parents"></div>
+  </section>
+
+  <!-- ====== Countdown ====== -->
+  <section class="section countdown fade-in">
+    <div class="countdown-grid">
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-days">0</span>
+        <span class="countdown-unit">Days</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-hours">0</span>
+        <span class="countdown-unit">Hours</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-mins">0</span>
+        <span class="countdown-unit">Min</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-secs">0</span>
+        <span class="countdown-unit">Sec</span>
+      </div>
+    </div>
+    <div class="countdown-dday"></div>
+    <div class="countdown-calendar-buttons">
+      <button class="btn-calendar" id="btn-gcal" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Google
+      </button>
+      <button class="btn-calendar" id="btn-ical" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Apple
+      </button>
+    </div>
+  </section>
+
+  <!-- ====== Our Story ====== -->
+  <section class="section story fade-in">
+    <div class="story-header">
+      <div class="section-label">Our Story</div>
+      <div class="section-title" id="story-title"></div>
+    </div>
+    <p class="story-content"></p>
+    <div class="story-images"></div>
+  </section>
+
+  <!-- ====== Gallery ====== -->
+  <section class="section gallery fade-in">
+    <div class="gallery-header">
+      <div class="section-label">Gallery</div>
+      <div class="section-title">우리의 순간들</div>
+    </div>
+    <div class="gallery-grid"></div>
+    <div class="gallery-more">
+      <button class="btn-gallery-more" type="button">더보기</button>
+    </div>
+  </section>
+
+  <!-- ====== Location ====== -->
+  <section class="section location fade-in">
+    <div class="location-header">
+      <div class="section-label">Location</div>
+      <div class="section-title">오시는 길</div>
+    </div>
+    <div class="location-info">
+      <div class="location-venue-name"></div>
+      <div class="location-venue-hall"></div>
+      <div class="location-address"></div>
+      <div class="location-tel"></div>
+    </div>
+    <div class="location-map-image">
+      <img src="" alt="약도" loading="lazy">
+    </div>
+    <!-- 대중교통 이용안내 (아코디언) -->
+    <div class="info-list transit-list" id="transit-list"></div>
+
+    <!-- 지도 / 내비게이션 -->
+    <div class="navi-block">
+      <div class="navi-group">
+        <div class="navi-title">▼ 지도 ▼</div>
+        <p class="navi-desc">원하시는 앱을 선택하시면 위치가 표시됩니다.</p>
+        <div class="navi-card">
+          <div class="navi-apps">
+            <a href="#" id="link-kakao-map" class="navi-app" target="_blank" rel="noopener">
+              <span class="navi-label">카카오맵</span>
+            </a>
+            <a href="#" id="link-naver-map" class="navi-app" target="_blank" rel="noopener">
+              <span class="navi-label">네이버지도</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navi-group">
+        <div class="navi-title">▼ 내비게이션 ▼</div>
+        <p class="navi-desc">원하시는 앱을 선택하시면 길안내가 시작됩니다.</p>
+        <div class="navi-card">
+          <div class="navi-apps">
+            <a href="#" id="link-kakao-navi" class="navi-app" target="_blank" rel="noopener">
+              <span class="navi-label">카카오내비</span>
+            </a>
+            <a href="#" id="link-tmap" class="navi-app" target="_blank" rel="noopener">
+              <span class="navi-label">티맵</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="btn-copy-address" class="navi-copy">주소 복사</button>
+    </div>
+  </section>
+
+  <!-- ====== Information ====== -->
+  <section class="section info fade-in" id="info-block">
+    <div class="info-header">
+      <div class="section-label">Information</div>
+      <div class="section-title"></div>
+    </div>
+    <p class="info-message"></p>
+    <div class="info-list"></div>
+  </section>
+
+  <!-- ====== RSVP ====== -->
+  <section class="section rsvp fade-in" id="rsvp-section">
+    <div class="rsvp-header">
+      <div class="section-label">Save the Date</div>
+      <div class="section-title"></div>
+    </div>
+    <p class="rsvp-message"></p>
+    <button type="button" class="rsvp-open-btn" id="rsvp-open-btn"></button>
+  </section>
+
+  <!-- ====== Account ====== -->
+  <section class="section account fade-in">
+    <div class="account-header">
+      <div class="section-label">Account</div>
+      <div class="section-title">마음 전하실 곳</div>
+      <p class="account-comment"></p>
+    </div>
+
+    <div class="account-group" id="account-groom">
+      <button class="account-group-toggle" type="button">
+        <span class="toggle-label">신랑측 계좌번호</span>
+        <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="account-list"></div>
+    </div>
+
+    <div class="account-group" id="account-bride">
+      <button class="account-group-toggle" type="button">
+        <span class="toggle-label">신부측 계좌번호</span>
+        <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="account-list"></div>
+    </div>
+  </section>
+
+  <!-- ====== Footer ====== -->
+  <footer class="footer">
+    <div class="footer-text">Wedding Invitation</div>
+  </footer>
+
+</div>
+
+<!-- ====== Photo Modal ====== -->
+<div class="modal-overlay">
+  <button class="modal-close" type="button" aria-label="닫기">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <button class="modal-nav modal-prev" type="button" aria-label="이전">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+  <button class="modal-nav modal-next" type="button" aria-label="다음">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <polyline points="9 6 15 12 9 18"/>
+    </svg>
+  </button>
+  <div class="modal-swipe-area">
+    <img class="modal-image" src="" alt="">
+  </div>
+  <div class="modal-counter"></div>
+</div>
+
+<!-- ====== RSVP Floating Banner (하단 고정) ====== -->
+<div class="rsvp-banner hide" id="rsvp-banner">
+  <button type="button" id="rsvp-banner-btn"></button>
+</div>
+
+<!-- ====== RSVP Modal ====== -->
+<div class="rsvp-overlay" id="rsvp-overlay" aria-hidden="true">
+  <div class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
+    <button type="button" class="rsvp-close" id="rsvp-close" aria-label="닫기">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="rsvp-modal-title" id="rsvp-modal-title">참석의사 전달</div>
+
+    <form id="rsvp-form" novalidate>
+      <div class="rsvp-field">
+        <div class="rsvp-field-label">구분</div>
+        <div class="rsvp-choices">
+          <label><input type="radio" name="side" value="신랑측" required><span>신랑측</span></label>
+          <label><input type="radio" name="side" value="신부측" required><span>신부측</span></label>
+        </div>
+      </div>
+
+      <div class="rsvp-field">
+        <div class="rsvp-field-label">참석 여부</div>
+        <div class="rsvp-choices">
+          <label><input type="radio" name="attend" value="참석" required><span>참석</span></label>
+          <label><input type="radio" name="attend" value="불참" required><span>불참</span></label>
+        </div>
+      </div>
+
+      <div class="rsvp-field">
+        <label class="rsvp-field-label" for="rsvp-name">성함</label>
+        <input type="text" id="rsvp-name" name="name" class="rsvp-input" placeholder="성함을 입력해 주세요" maxlength="30" autocomplete="name" required>
+      </div>
+
+      <div class="rsvp-field rsvp-attend-only">
+        <label class="rsvp-field-label" for="rsvp-count">동행 인원 (본인 포함)</label>
+        <select id="rsvp-count" name="count" class="rsvp-input">
+          <option value="1">1명</option><option value="2">2명</option><option value="3">3명</option>
+          <option value="4">4명</option><option value="5">5명</option><option value="6">6명 이상</option>
+        </select>
+      </div>
+
+      <div class="rsvp-field rsvp-attend-only">
+        <div class="rsvp-field-label">식사 여부</div>
+        <div class="rsvp-choices">
+          <label><input type="radio" name="meal" value="식사 예정" checked><span>식사 예정</span></label>
+          <label><input type="radio" name="meal" value="식사 안 함"><span>식사 안 함</span></label>
+        </div>
+      </div>
+
+      <div class="rsvp-field">
+        <label class="rsvp-field-label" for="rsvp-memo">전달하실 말씀 (선택)</label>
+        <textarea id="rsvp-memo" name="memo" class="rsvp-input" rows="3" maxlength="200" placeholder="축하 메시지나 전달 사항을 남겨 주세요"></textarea>
+      </div>
+
+      <p class="rsvp-error" id="rsvp-error" role="alert"></p>
+      <button type="submit" class="rsvp-submit" id="rsvp-submit">전달하기</button>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
