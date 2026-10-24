@@ -601,383 +601,40 @@ a {
   object-fit: cover;
 }
 
-.transit-list {
-  margin-bottom: 40px;
-  text-align: left;
-}
-
-/* 지도 / 내비게이션 */
-.navi-block {
-  text-align: center;
-}
-
-.navi-group {
-  margin-bottom: 32px;
-}
-
-.navi-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #000;
-  margin-bottom: 4px;
-}
-
-.navi-desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: #666;
-  margin-bottom: 16px;
-}
-
-.navi-card {
-  background: #f7f7f7;
-  border-radius: 12px;
-  padding: 8px;
-}
-
-.navi-apps {
+.location-actions {
   display: flex;
-  flex-direction: column;
   gap: 8px;
+  margin-bottom: 12px;
 }
 
-.navi-app {
-  display: block;
-  padding: 16px 0;
-  background: #fff;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #222;
-  text-align: center;
-  transition: box-shadow 0.2s;
-}
-
-.navi-app:hover {
-  box-shadow: 0 0 0 1px #bbb inset;
-}
-
-.navi-copy {
-  padding: 10px 24px;
+.location-actions button,
+.location-actions a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 0;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 13px;
   color: #555;
-  background: #fff;
-}
-
-.navi-copy:hover {
-  border-color: #999;
-  color: #000;
-}
-
-/* ── Information Section (안내사항) ── */
-.info {
-  background: #fafafa;
-  text-align: center;
-}
-
-.info-header {
-  margin-bottom: 32px;
-}
-
-.info-header .section-title {
-  margin-bottom: 0;
-}
-
-.info-message {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 2;
-  color: #555;
-  white-space: pre-line;
-  margin-bottom: 32px;
-}
-
-.info .info-item {
-  background: #fff;
-  border: 1px solid #e5e5e5;
-}
-
-.info-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  text-align: left;
-}
-
-.info-item {
-  background: #f7f7f7;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.info-item-toggle {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #222;
-  text-align: left;
-}
-
-.info-item-toggle .toggle-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: #333;
-  transition: transform 0.3s ease;
-}
-
-.info-item.open .toggle-icon {
-  transform: rotate(180deg);
-}
-
-.info-item-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-
-.info-item.open .info-item-body {
-  max-height: 800px;
-}
-
-.info-item-body p {
-  padding: 0 20px 20px;
-  font-size: 14px;
   font-weight: 400;
-  line-height: 1.8;
-  color: #333;
-  white-space: pre-line;
-  word-break: keep-all;
-}
-
-/* ── RSVP Section ── */
-.rsvp {
-  background: #fff;
-  text-align: center;
-}
-
-.rsvp-header {
-  margin-bottom: 32px;
-}
-
-.rsvp-header .section-title {
-  margin-bottom: 0;
-}
-
-.rsvp-message {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 2;
-  color: #555;
-  white-space: pre-line;
-  margin-bottom: 32px;
-}
-
-.rsvp-open-btn {
-  width: 100%;
-  padding: 18px 0;
-  background: #f7f7f7;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #222;
-  transition: border-color 0.2s;
-}
-
-.rsvp-open-btn:hover {
-  border-color: #999;
-}
-
-/* RSVP 하단 고정 배너 */
-.rsvp-banner {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-  z-index: 900;
-  padding: 12px 16px;
-  padding-bottom: calc(12px + env(safe-area-inset-bottom));
-  background: rgba(255, 255, 255, 0.92);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid #eee;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.rsvp-banner.hide {
-  transform: translate(-50%, 100%);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.rsvp-banner button {
-  width: 100%;
-  padding: 15px 0;
-  background: #222;
-  color: #fff;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
-@media (min-width: 768px) {
-  .rsvp-banner { max-width: 520px; }
-}
-
-@media (min-width: 1024px) {
-  .rsvp-banner { max-width: 560px; }
-}
-
-body.has-rsvp-banner .footer {
-  padding-bottom: calc(100px + env(safe-area-inset-bottom));
-}
-
-/* RSVP Modal */
-.rsvp-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1500;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.rsvp-overlay.active {
-  display: flex;
-}
-
-.rsvp-modal {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  max-height: 90vh;
-  max-height: 90svh;
-  overflow-y: auto;
-  background: #fff;
-  border-radius: 16px;
-  padding: 32px 24px 24px;
-  text-align: left;
-}
-
-.rsvp-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-}
-
-.rsvp-modal-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #000;
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.rsvp-field {
-  margin-bottom: 18px;
-}
-
-.rsvp-field-label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: #555;
-  margin-bottom: 8px;
-}
-
-.rsvp-choices {
-  display: flex;
-  gap: 8px;
-}
-
-.rsvp-choices label {
-  flex: 1;
-  cursor: pointer;
-}
-
-.rsvp-choices input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.rsvp-choices span {
-  display: block;
-  text-align: center;
-  padding: 12px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #555;
   transition: all 0.2s;
-}
-
-.rsvp-choices input:checked + span {
-  background: #222;
-  border-color: #222;
-  color: #fff;
-}
-
-.rsvp-choices input:focus-visible + span {
-  outline: 2px solid #999;
-  outline-offset: 2px;
-}
-
-.rsvp-input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 16px; /* iOS 확대 방지 */
-  color: #333;
   background: #fff;
-  resize: none;
+  text-align: center;
 }
 
-.rsvp-input:focus {
-  outline: none;
-  border-color: #888;
+.location-actions button:hover,
+.location-actions a:hover {
+  border-color: #999;
+  color: #000;
 }
 
-.rsvp-error {
-  min-height: 20px;
-  font-size: 13px;
-  color: #d33;
-  margin-bottom: 8px;
-}
-
-.rsvp-submit {
-  width: 100%;
-  padding: 15px 0;
-  background: #222;
-  color: #fff;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.rsvp-submit:disabled {
-  opacity: 0.6;
-  cursor: default;
+.location-actions svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 /* ── Account Section ── */
@@ -988,15 +645,6 @@ body.has-rsvp-banner .footer {
 
 .account-header {
   margin-bottom: 32px;
-}
-
-.account-comment {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 2;
-  color: #555;
-  white-space: pre-line;
-  margin-top: -12px;
 }
 
 .account-group {
@@ -1111,8 +759,8 @@ body.has-rsvp-banner .footer {
 /* ── Toast ── */
 .toast {
   position: fixed;
-  bottom: 96px;
-  bottom: calc(96px + env(safe-area-inset-bottom));
+  bottom: 40px;
+  bottom: calc(40px + env(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   background: #333;
@@ -1271,9 +919,4 @@ body.has-rsvp-banner .footer {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
-}
-
-/* 하단 배너가 히어로 문구를 가리지 않도록 여백 확보 */
-body.has-rsvp-banner .hero-overlay {
-  padding-bottom: calc(60px + 72px);
 }
